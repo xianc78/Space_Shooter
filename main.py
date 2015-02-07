@@ -62,8 +62,7 @@ while True:
 		laser.update()
 	retreat_time -= 1
 	if retreat_time <= 0:
-		for i in range(0, 3):
-			enemy_list.append(Enemy(random.randint(0, constants.SCREEN_WIDTH), 0))
+		enemy_list.append(Enemy(random.randint(0, constants.SCREEN_WIDTH - 112), 0))
 		retreat_time = constants.RETREAT_TIME
 	pygame.display.update()
 	clock.tick(constants.FPS)

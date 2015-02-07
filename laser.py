@@ -4,7 +4,7 @@ pygame.init()
 
 class Laser:
 	def __init__(self, x, y, change_y, ship):
-		self.image = pygame.image.load("resources/laser.png")
+		self.image = pygame.image.load("resources/laser.png").convert_alpha()
 		self.rect = self.image.get_rect()
 		self.rect.centerx = x
 		self.rect.bottom = y

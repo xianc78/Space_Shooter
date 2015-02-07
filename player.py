@@ -5,7 +5,7 @@ pygame.init()
 
 class Player:
 	def __init__(self, x, y):
-		self.image = pygame.image.load("resources/playership.png")
+		self.image = pygame.image.load("resources/playership.png").convert_alpha()
 		self.rect = self.image.get_rect()
 		self.rect.x = x
 		self.rect.y = y
