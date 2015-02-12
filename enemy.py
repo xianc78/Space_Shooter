@@ -1,5 +1,6 @@
 import pygame
 import constants
+from explosion import Explosion
 pygame.init()
 
 class Enemy:
@@ -15,6 +16,7 @@ class Enemy:
 		for laser in self.laser_list:
 			if self.rect.colliderect(laser.rect):
 				try:
+					self.explosion_list.append(Explosion(self.rect.centerx, self.rect.centery))
 					self.enemy_list.remove(self)
 					self.laser_list.remove(laser)
 				except ValueError:

@@ -1,5 +1,6 @@
 #Colors
 BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
 
 # Frames per second
 FPS = 40

@@ -1,6 +1,7 @@
 import pygame, sys
 import constants
 from laser import Laser
+from explosion import Explosion
 pygame.init()
 
 class Player:

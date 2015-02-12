@@ -4,6 +4,7 @@ import random
 from player import Player
 from enemy import Enemy
 from laser import Laser
+from explosion import Explosion
 from pygame.locals import *
 pygame.init()
 
@@ -17,13 +18,19 @@ retreat_time = constants.RETREAT_TIME
 player = Player(constants.SCREEN_WIDTH/2, constants.SCREEN_HEIGHT - 75)
 
 # Creating game objects and groups
+# Todo: organize this block of code.
 laser_list = []
+explosion_list = []
 player.laser_list = laser_list
+player.explosion_list = explosion_list
 Enemy.laser_list = laser_list
-enemy_list = [Enemy(random.randint(0, constants.SCREEN_WIDTH), 0) for i in range(0, 3)]
+Enemy.explosion_list = explosion_list
+enemy_list = [Enemy(random.randint(0, constants.SCREEN_WIDTH), -75) for i in range(0, 3)]
 player.enemy_list = enemy_list
 Enemy.enemy_list = enemy_list
 Laser.laser_list = laser_list
+Laser.explosion_list = explosion_list
+Explosion.explosion_list = explosion_list
 
 while True:
 	# Draw the images
@@ -33,6 +40,8 @@ while True:
 		screen.blit(enemy.image, (enemy.rect.x, enemy.rect.y))
 	for laser in laser_list:
 		screen.blit(laser.image, (laser.rect.x, laser.rect.y))
+	for explosion in explosion_list:
+		screen.blit(explosion.image, (explosion.rect.x, explosion.rect.y))
 
 	# Check for key events	
 	for event in pygame.event.get():
@@ -60,9 +69,11 @@ while True:
 		enemy.update()
 	for laser in laser_list:
 		laser.update()
+	for explosion in explosion_list:
+		explosion.update()
 	retreat_time -= 1
 	if retreat_time <= 0:
-		enemy_list.append(Enemy(random.randint(0, constants.SCREEN_WIDTH - 112), 0))
+		enemy_list.append(Enemy(random.randint(0, constants.SCREEN_WIDTH - 112), -75))
 		retreat_time = constants.RETREAT_TIME
 	pygame.display.update()
 	clock.tick(constants.FPS)
