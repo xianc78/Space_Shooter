@@ -8,7 +8,7 @@ from explosion import Explosion
 from pygame.locals import *
 pygame.init()
 
-screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT), FULLSCREEN)
+screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
 pygame.display.set_caption("Space Shooter")
 
 clock = pygame.time.Clock()
@@ -22,6 +22,7 @@ player = Player(constants.SCREEN_WIDTH/2, constants.SCREEN_HEIGHT - 75)
 laser_list = []
 explosion_list = []
 player.laser_list = laser_list
+Enemy.player = player
 player.explosion_list = explosion_list
 Enemy.laser_list = laser_list
 Enemy.explosion_list = explosion_list

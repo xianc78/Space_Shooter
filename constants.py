@@ -9,4 +9,6 @@ FPS = 40
 SCREEN_WIDTH = 800
 SCREEN_HEIGHT = 600
 
+# Retreat and reload time
 RETREAT_TIME = 20
+RELOAD_TIME = 40
