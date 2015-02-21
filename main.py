@@ -8,14 +8,20 @@ from explosion import Explosion
 from pygame.locals import *
 pygame.init()
 
+# Creating the window and settign the caption and icon
 screen = pygame.display.set_mode((constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
 pygame.display.set_caption("Space Shooter")
+icon = pygame.image.load("resources/playership.png")
+icon = pygame.transform.scale(icon, (32, 32))
+pygame.display.set_icon(icon)
 
 clock = pygame.time.Clock()
 
 retreat_time = constants.RETREAT_TIME
 
 player = Player(constants.SCREEN_WIDTH/2, constants.SCREEN_HEIGHT - 75)
+
+paused = False
 
 # Creating game objects and groups
 # Todo: organize this block of code.
@@ -59,11 +65,24 @@ while True:
 				player.changespeed(10, 0)
 			elif event.key == K_SPACE:
 				player.shoot()
+			elif event.key == K_p:
+				paused = True
 		elif event.type == KEYUP:
 			if event.key == K_LEFT:
 				player.changespeed(10, 0)
 			elif event.key == K_RIGHT:
 				player.changespeed(-10, 0)
+	while paused:
+		for event in pygame.event.get():
+			if event.type == QUIT:
+				pygame.quit()
+				sys.exit()
+			elif event.type == KEYDOWN:
+				if event.key == K_ESCAPE:
+					pygame.quit()
+					sys.exit()
+				elif event.key == K_p:
+					paused = False
 	# Update game objects			
 	player.update()
 	for enemy in enemy_list:

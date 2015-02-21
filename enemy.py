@@ -31,7 +31,7 @@ class Enemy:
 						pass
 				else:
 					pass
-		if self.rect.bottom > constants.SCREEN_HEIGHT:
+		if self.rect.top > constants.SCREEN_HEIGHT:
 			self.enemy_list.remove(self)
 
 	def inLineOfSight(self):
