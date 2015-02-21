@@ -41,6 +41,7 @@ Explosion.explosion_list = explosion_list
 
 while True:
 	# Draw the images
+	pygame.display.set_caption("Space Shooter | " + str(player.score))
 	screen.fill(constants.BLACK)
 	screen.blit(player.image, (player.rect.x, player.rect.y))
 	for enemy in enemy_list:

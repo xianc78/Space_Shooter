@@ -4,6 +4,8 @@ from laser import Laser
 from explosion import Explosion
 pygame.init()
 
+laserSound = pygame.mixer.Sound("resources/laser.wav")
+
 class Player:
 	def __init__(self, x, y):
 		try:
@@ -29,6 +31,9 @@ class Player:
 		self.rect.y += self.change_y
 		for enemy in self.enemy_list:
 			if self.rect.colliderect(enemy.rect):
+				self = Explosion(self.rect.centerx, self.rect.centery)
+				pygame.display.update(self.rect)
+				pygame.time.wait(500)
 				pygame.quit()
 				sys.exit()
 		for laser in self.laser_list:
@@ -42,3 +47,4 @@ class Player:
 
 	def shoot(self):
 		self.laser_list.append(Laser(self.rect.centerx, self.rect.top, -7, self))
+		laserSound.play()
