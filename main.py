@@ -19,8 +19,13 @@ clock = pygame.time.Clock()
 
 retreat_time = constants.RETREAT_TIME
 
+# Create the player
 player = Player(constants.SCREEN_WIDTH/2, constants.SCREEN_HEIGHT - 75)
 
+# Give the explosion module a screen for game over
+Explosion.screen = screen
+
+# Set pause = False
 paused = False
 
 # Creating game objects and groups

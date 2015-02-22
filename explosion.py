@@ -1,7 +1,7 @@
 import pygame, sys
 import constants
 
-explosion_sound = pygame.mixer.Sound("resources/explosion.wav")
+explosionSound = pygame.mixer.Sound("resources/explosion.wav")
 
 class Explosion:
 	def __init__(self, x, y):
@@ -16,7 +16,7 @@ class Explosion:
 		self.rect = self.image.get_rect()
 		self.rect.center = (x, y)
 		self.life = 20
-		explosion_sound.play()
+		explosionSound.play()
 
 	def update(self):
 		self.life -= 1

@@ -4,6 +4,8 @@ from explosion import Explosion
 from laser import Laser
 pygame.init()
 
+laserSound = pygame.mixer.Sound("resources/laser.wav")
+
 class Enemy:
 	def __init__(self, x, y):
 		self.image = pygame.image.load("resources/enemyship.png").convert_alpha()
@@ -39,3 +41,4 @@ class Enemy:
 
 	def shoot(self):
 		self.laser_list.append(Laser(self.rect.centerx, self.rect.centery + 54, 7, self))
+		laserSound.play()

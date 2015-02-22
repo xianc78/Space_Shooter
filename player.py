@@ -31,15 +31,10 @@ class Player:
 		self.rect.y += self.change_y
 		for enemy in self.enemy_list:
 			if self.rect.colliderect(enemy.rect):
-				self = Explosion(self.rect.centerx, self.rect.centery)
-				pygame.display.update(self.rect)
-				pygame.time.wait(500)
-				pygame.quit()
-				sys.exit()
+				self.die
 		for laser in self.laser_list:
 			if self.rect.colliderect(laser.rect) and laser.ship != self:
-				pygame.quit()
-				sys.exit()
+				self.die()
 
 	def changespeed(self, x, y):
 		self.change_x += x
@@ -48,3 +43,11 @@ class Player:
 	def shoot(self):
 		self.laser_list.append(Laser(self.rect.centerx, self.rect.top, -7, self))
 		laserSound.play()
+
+	def die(self):
+		self = Explosion(self.rect.centerx, self.rect.centery)
+		Explosion.screen.blit(self.image, (self.rect.x, self.rect.y))
+		pygame.display.update(self.rect)
+		pygame.time.wait(500)
+		pygame.quit()
+		sys.exit()
