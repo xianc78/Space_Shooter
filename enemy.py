@@ -1,4 +1,4 @@
-import pygame
+import pygame, random
 import constants
 from explosion import Explosion
 from laser import Laser
@@ -19,8 +19,9 @@ class Enemy:
 		self.reload_time -= 1
 		self.rect.y += self.change_y
 		if self.inLineOfSight() and self.reload_time <= 0:
-			self.shoot()
-			self.reload_time = constants.RELOAD_TIME
+			if random.choice([True, False, False]) == True:
+				self.shoot()
+				self.reload_time = constants.RELOAD_TIME
 		for laser in self.laser_list:
 			if self.rect.colliderect(laser.rect):
 				if laser.ship == self.player:
