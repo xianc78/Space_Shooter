@@ -28,6 +28,9 @@ Explosion.screen = screen
 # Set pause = False
 paused = False
 
+background = pygame.image.load("resources/background.png")
+background = pygame.transform.scale(background, (constants.SCREEN_WIDTH, constants.SCREEN_HEIGHT))
+
 # Creating game objects and groups
 # Todo: organize this block of code.
 laser_list = []
@@ -48,6 +51,7 @@ while True:
 	# Draw the images
 	pygame.display.set_caption("Space Shooter | " + str(player.score))
 	screen.fill(constants.BLACK)
+	screen.blit(background, (0, 0))
 	screen.blit(player.image, (player.rect.x, player.rect.y))
 	for enemy in enemy_list:
 		screen.blit(enemy.image, (enemy.rect.x, enemy.rect.y))
